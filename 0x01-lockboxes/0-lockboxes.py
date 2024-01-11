@@ -7,11 +7,12 @@ def canUnlockAll(boxes):
     return true if all open otherwise false
     """
     opened = set()
+    n = len(boxes) - 1
 
     def dfs(box):
         opened.add(box)
         for k in boxes[box]:
-            if k not in opened:
+            if k not in opened and k <= n:
                 dfs(k)
     dfs(0)
 
