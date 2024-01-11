@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+""" task 2"""
 
 
 def canUnlockAll(boxes):
