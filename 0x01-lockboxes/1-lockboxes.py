@@ -10,12 +10,12 @@ def canUnlockAll(boxes):
     n = len(boxes) - 1
     if n == 1:
         return True
-    stack = [0]
-    while stack:
-        box = stack.pop()
+
+    def dfs(box):
         opened.add(box)
-        for key in boxes[box]:
-            if key <= n and key not in opened:
-                stack.append(key)
+        for k in boxes[box]:
+            if k <= n and k not in opened and k > 0:
+                dfs(k)
+    dfs(0)
 
     return len(boxes) == len(opened)
