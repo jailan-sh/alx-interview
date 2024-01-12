@@ -6,6 +6,8 @@ def canUnlockAll(boxes):
     """method that determines if all the boxes can be opened.
     return true if all open otherwise false
     """
+    if boxes is None:
+        return False
     opened = set()
     n = len(boxes)
     stack = [0]

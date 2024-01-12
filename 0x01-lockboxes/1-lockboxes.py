@@ -6,10 +6,10 @@ def canUnlockAll(boxes):
     """method that determines if all the boxes can be opened.
     return true if all open otherwise false
     """
+    if boxes is None:
+        return False
     opened = set()
     n = len(boxes) - 1
-    if n == 1:
-        return True
 
     def dfs(box):
         opened.add(box)
