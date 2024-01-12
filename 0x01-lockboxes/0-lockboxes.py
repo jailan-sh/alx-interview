@@ -6,16 +6,16 @@ def canUnlockAll(boxes):
     """method that determines if all the boxes can be opened.
     return true if all open otherwise false
     """
-    if boxes is None:
-        return False
-    opened = set()
-    n = len(boxes)
-    stack = [0]
-    while stack:
-        box = stack.pop()
-        opened.add(box)
-        for key in boxes[box]:
-            if key <= n and key not in opened:
-                stack.append(key)
+    num_boxes = len(boxes)
+    unlocked = [False] * num_boxes
+    unlocked[0] = True
+    queue = [0]
 
-    return len(boxes) == len(opened)
+    while queue:
+        current_box = queue.pop(0)
+        for key in boxes[current_box]:
+            if 0 <= key < num_boxes and not unlocked[key]:
+                unlocked[key] = True
+                queue.append(key)
+
+    return all(unlocked)
