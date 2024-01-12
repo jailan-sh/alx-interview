@@ -1,5 +1,8 @@
 #!/usr/bin/python3
 """ task 2"""
+import sys
+
+sys.setrecursionlimit(5000)
 
 
 def canUnlockAll(boxes):
