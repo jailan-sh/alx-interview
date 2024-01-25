@@ -1,4 +1,4 @@
-#!usr/bin/python3 
+#!/usr/bin/python3
 """
 script read stdin and return spacific out put 
 """
@@ -28,7 +28,7 @@ try:
             for code in sorted(status_count):
                 print("{}: {}".format(code, status_count[code]))
             total_size = 0
-            status_count = {}
+            status_count.clear()
 
 except KeyboardInterrupt:
     pass
@@ -36,4 +36,4 @@ print("File size: {}".format(total_size))
 for code in sorted(status_count):
     print("{}: {}".format(code, status_count[code]))
 total_size = 0
-status_count = {}
+status_count.clear()
