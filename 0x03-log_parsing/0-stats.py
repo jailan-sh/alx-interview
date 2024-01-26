@@ -21,17 +21,17 @@ total_size = 0
 
 try:
     for i, line in enumerate(sys.stdin, start=1):
-        line = line.strip().split()
-        if line != 7:
+        pline = line.strip().split()
+        if pline != 7:
             continue
         try:
-            file_size = int(line[-1])
+            file_size = int(pline[-1])
 
-            code = int(line[-2])
+            code = pline[-2]
         except ValueError:
             pass
         total_size += file_size
-        if code in status_count.keys():
+        if code in status_count:
             status_count[code] += 1
 
         if i % 10 == 0:
