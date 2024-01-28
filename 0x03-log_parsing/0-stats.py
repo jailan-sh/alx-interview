@@ -30,8 +30,8 @@ try:
         try:
             file_size = int(pline[-1])
             code = pline[-2]
-        except Exception:
-            pass
+        except (ValueError, IndexError):
+            continue
         total_size += file_size
         if code in status_count:
             status_count[code] += 1
