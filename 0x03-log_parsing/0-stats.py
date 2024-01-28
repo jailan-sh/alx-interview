@@ -22,6 +22,9 @@ count = 0
 
 try:
     for line in sys.stdin:
+        if count == 10:
+            print_metrics(total_size, status_count)
+            count = 0
         pline = line.strip().split()
         count += 1
         try:
@@ -32,12 +35,8 @@ try:
         total_size += file_size
         if code in status_count:
             status_count[code] += 1
+    print_metrics(total_size, status_count)
 
-        if count == 10:
-            print_metrics(total_size, status_count)
-            total_size = 0
-            count = 0
 except KeyboardInterrupt:
     print_metrics(total_size, status_count)
     raise
-print_metrics(total_size, status_count)
