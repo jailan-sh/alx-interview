@@ -5,33 +5,36 @@ import sys
 
 def queens(n):
     """
-    return total positions of quens in dashboard
+    return total positions of queens in dashboard
     """
-    col = []
-    posdig = []
-    negdig = []
+    colums = []  # q in cloumns
+    posdig = []  # row + col
+    negdig = []  # row - col
     result = []
 
     def position_of_queen(row):
         """
-        q place in each row
+        main indicate position in each column
+        queen positions colums arr where index = rows
         """
-        if row == n:
-            result.append([[i, col[i]] for i in range(n)])
+        if row == n:  # base case recursion (end of dashboard)
+            # print(colums)
+            result.append([[i, colums[i]] for i in range(n)])
             return
-        for c in range(n):
-            if (c not in col and (row + c) not in posdig
-                and (row - c) not in negdig):
-                col.append(c)
-                negdig.append(row - c)
-                posdig.append(row + c)
+        for col in range(n):
+            if (col not in colums and (row + col) not in posdig
+               and (row - col) not in negdig):
+                colums.append(col)
+                negdig.append(row - col)
+                posdig.append(row + col)
 
-                position_of_queen(row + 1)
-                col.pop()
+                position_of_queen(row + 1)  # loop over rows
+                colums.pop()
                 posdig.pop()
                 negdig.pop()
 
     position_of_queen(0)
+    # print(result)
     for i in result:
         print(i)
 
