@@ -3,36 +3,37 @@
 import sys
 
 
-def nqueen_solution(n , board, answer):
+def queens(n):
+    """
+    return total positions of quens in dashboard
+    """
+    col = []
+    posdig = []
+    negdig = []
+    result = []
+
+    def position_of_queen(row):
         """
-        recresive function 
-        which will go throw rows
+        q place in each row
         """
-        def possible_place(row,col):
-            """
-            """
-            for i in range(row):
-                if board[i] == col or \
-                board[i] - i == row - col or \
-                board[i] + i == row + col:
-                    return False
-            return True
+        if row == n:
+            result.append([[i, col[i]] for i in range(n)])
+            return
+        for c in range(n):
+            if (c not in col and (row + c) not in posdig
+                and (row - c) not in negdig):
+                col.append(c)
+                negdig.append(row - c)
+                posdig.append(row + c)
 
+                position_of_queen(row + 1)
+                col.pop()
+                posdig.pop()
+                negdig.pop()
 
-        def queen_position(row):
-            """
-            """
-            if row == n:
-                answer.append(board[:])
-            else:
-                for col in range(n):
-                    if possible_place(row, col):
-                        board[row] = col
-                        queen_position(row + 1)
-
-        queen_position(0)
-
-        print(answer)
+    position_of_queen(0)
+    for i in result:
+        print(i)
 
 
 if __name__ == ('__main__'):
@@ -45,11 +46,9 @@ if __name__ == ('__main__'):
     except ValueError:
         print('N must be a number')
         sys.exit(1)
-    
+
     if n < 4:
         print('N must be at least 4')
         sys.exit(1)
 
-    board = [-1] * n
-    answer = []
-    nqueen_solution(n, board, answer)
+    queens(n)
