@@ -18,7 +18,7 @@ function getMoviecharaters(characters, index) {
     if (!error) {
       console.log(JSON.parse(body).name);
       if (index + 1 < characters.length) {
-        printCharacters(characters, index + 1);
+        getMoviecharaters(characters, index + 1);
       }
     }
   });
